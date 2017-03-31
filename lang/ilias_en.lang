@@ -1,0 +1,13 @@
+/**
+/ English Language File for Notify on Cron Failure Cron-Plugin
+**/
+
+title#:#Notify on Cron Crash or Failure
+description#:#Notifies the administrator if there are failed or crashed cron jobs.
+success#:#The cron jobs could be tested successfully.
+notification_subject#:#Failed Cron-Jobs notification
+notification_body#:#There is at least one Cron-Job that has failed or crashed. Please have a look.
+cron_id#:#Id of the failed Cron-Job
+status_cron#:#Status of the failed Cron-Job
+users_to_notify#:#Users to be notified
+users_to_notify_desc#:#A commaseparated list of all users who should be notified.
