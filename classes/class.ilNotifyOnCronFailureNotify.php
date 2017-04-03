@@ -48,7 +48,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 	 * @return bool
 	 */
 	public function hasAutoActivation() {
-		return true;
+		return false;
 	}
 	
 	/**
@@ -128,14 +128,6 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 			return new ilNotifyOnCronFailureResult(ilNotifyOnCronFailureResult::STATUS_OK, 'Cron job crashed: ' . $e->getMessage());
 		}
 		
-	}
-	
-	public function executeCommand()
-	{
-		global $ilCtrl, $tpl, $ilUser;
-		$cmd = $ilCtrl->getCmd();
-		echo "123";
-		die;
 	}
 	
 	public function addCustomSettingsToForm(ilPropertyFormGUI $a_form)
