@@ -115,7 +115,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 			$failed_jobs;
 			
 			foreach ($data as $job) {
-				if ($job["job_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_status"] == ilCronJobResult::STATUS_FAIL) {
+				if ($job["job_result_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_result_status"] == ilCronJobResult::STATUS_FAIL) {
 					$failed_jobs[] = array("job_id" => $job["job_id"], "job_status" => $job["job_status"]);
 				}
 			}
