@@ -110,12 +110,12 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 		include_once "Services/Cron/classes/class.ilCronJobResult.php";
 		
 		try {
-			$data = ilCronManager::getCronJobData();
+			$data = ilCronManager::getCronJobData(null, false);
 
 			$failed_jobs;
 			
 			foreach ($data as $job) {
-			    if ($job["job_result_status"] == 0 || $job["job_result_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_result_status"] == ilCronJobResult::STATUS_FAIL) {
+			    if ($job["job_result_code"] == ilCronJobResult::CODE_SUPPOSED_CRASH || $job["job_result_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_result_status"] == ilCronJobResult::STATUS_FAIL) {
 					$failed_jobs[] = array("job_id" => $job["job_id"], "job_status" => $job["job_status"]);
 				}
 			}
