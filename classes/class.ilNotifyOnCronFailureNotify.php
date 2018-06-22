@@ -119,7 +119,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 					$failed_jobs[] = array("job_id" => $job["job_id"], "job_status" => $job["job_status"]);
 				}
 			}
-
+var_dump($failed_jobs);die;
 			if (isset($failed_jobs)) {
 				$this->sendEmail($failed_jobs);
 			}
