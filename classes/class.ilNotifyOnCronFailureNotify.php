@@ -110,17 +110,17 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 		include_once "Services/Cron/classes/class.ilCronJobResult.php";
 		
 		try {
-			$data = ilCronManager::getCronJobData(null, false);
+			$data = ilCronManager::getCronJobData();
 
-			$failed_jobs;
+			$failed_jobs = [];
 			
 			foreach ($data as $job) {
-			    if ($job["job_result_code"] == ilCronJobResult::CODE_SUPPOSED_CRASH || $job["job_result_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_result_status"] == ilCronJobResult::STATUS_FAIL) {
-					$failed_jobs[] = array("job_id" => $job["job_id"], "job_status" => $job["job_status"]);
+			    if ($job["job_result_status"] == ilCronJobResult::STATUS_CRASHED || $job["job_result_status"] == ilCronJobResult::STATUS_FAIL) {
+					$failed_jobs[] = array("job_id" => $job["job_id"], "job_result_message" => $job["job_result_message"]);
 				}
 			}
-var_dump($failed_jobs);die;
-			if (isset($failed_jobs)) {
+
+			if (!empty($failed_jobs)) {
 				$this->sendEmail($failed_jobs);
 			}
 			return new ilNotifyOnCronFailureResult(ilNotifyOnCronFailureResult::STATUS_OK, 'Cron job terminated successfully.');
@@ -132,8 +132,6 @@ var_dump($failed_jobs);die;
 	
 	public function addCustomSettingsToForm(ilPropertyFormGUI $a_form)
 	{
-		global $ilSetting;
-	
 		include_once 'Services/Form/classes/class.ilTextInputGUI.php';
 		$users = new ilTextInputGUI(
 				$this->cp->txt('users_to_notify'),
@@ -159,11 +157,9 @@ var_dump($failed_jobs);die;
 	}
 	
 	private function sendEmail($failures) {
-		global $ilSetting;
-	
 		$setting = new ilSetting("crnot");
 		$users = explode(",", $setting->get('cron_notify_users_to_notify', ""));
-		$user_ids;
+		$user_ids = [];
 	
 		include_once "./Services/User/classes/class.ilObjUser.php";
 		foreach ($users as $user) {
@@ -178,7 +174,7 @@ var_dump($failed_jobs);die;
 			$ntf->setIntroductionLangId($this->cp->getPrefix()."_"."notification_body");
 			foreach($failures as $failure) {
 				$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."cron_id", $failure['job_id']);
-				$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."status_cron", $failure['job_status']);
+				$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."status_cron", $failure['job_result_message']);
 			}
 	
 			$ntf->sendMail($user_ids);
