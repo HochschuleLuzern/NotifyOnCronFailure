@@ -23,7 +23,7 @@
 	$id = 'crnot';
 	
 	// Version Information of Plugin & compatible versions of ILIAS
-	$version = '0.9';
+	$version = '1';
 	$ilias_min_version = '5.3.0';
 	$ilias_max_version = '5.4.999';
 	

@@ -177,11 +177,13 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 			$ntf->setLangModules(array($this->cp->getPrefix()));
 			$ntf->setSubjectLangId($this->cp->getPrefix()."_"."notification_subject");
 			$ntf->setIntroductionLangId($this->cp->getPrefix()."_"."notification_body");
+			$text = '';
 			foreach($failures as $failure) {
-				$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."cron_id", $failure['job_id']);
-				$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."status_cron", $failure['job_result_message']);
+				$text .=  $failure['job_id'].' ('.$this->cp->txt('cron_status').': '.$failure['job_result_message'].")\n";
 			}
-	
+			
+			$ntf->addAdditionalInfo($this->cp->getPrefix()."_"."failed_crs", $text, true);
+			
 			$ntf->sendMail($user_ids);
 		}
 	}

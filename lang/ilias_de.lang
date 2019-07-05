@@ -7,7 +7,7 @@ description#:#Benachrichtigt die eingetragenen Administratoren, wenn ein Cron-Jo
 success#:#Der Test der Cron-Jobs ist fehlerfrei durchgelaufen.
 notification_subject#:#Cron-Jobs mit Problemen
 notification_body#:#Mindestens ein Cron-Job auf Ihrem System hat ein Problem. Bitte überprüfen.
-cron_id#:#Id des Cron-Jobs
-status_cron#:# Status des Cron-Job
+failed_crs#:#Cron-Jobs mit Problemen:
+cron_status#:# Status des Cron-Job
 users_to_notify#:#Zu benachrichtigende Benutzer
 users_to_notify_desc#:#Eine kommagetrennte Liste aller zu benachrichtigenden Benutzer.
