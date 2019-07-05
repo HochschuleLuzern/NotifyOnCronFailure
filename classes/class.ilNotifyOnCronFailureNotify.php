@@ -111,6 +111,11 @@ class ilNotifyOnCronFailureNotify extends ilCronJob {
 		
 		try {
 			$data = ilCronManager::getCronJobData();
+			$data_plugins = ilCronManager::getPluginJobs();
+			
+			foreach ($data_plugins as $data_plugin) {
+				$data[] = $data_plugin[1];
+			}
 
 			$failed_jobs = [];
 			
