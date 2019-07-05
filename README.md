@@ -3,10 +3,10 @@
 NotifyOnCronFailure is a Cron-Plugin that checks for failed or crashed jobs and notifies a selected set of people
 
 **Minimum ILIAS Version:**
-5.1.0
+5.3.0
 
 **Maximum ILIAS Version:**
-5.1.999
+5.4.999
 
 **Responsible Developer:**
 Stephan Winiker - stephan.winiker@hslu.ch
