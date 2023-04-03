@@ -41,7 +41,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
         $this->cp = new ilNotifyOnCronFailurePlugin();
     }
     
-    public function getId()
+    public function getId(): string
     {
         return self::ID;
     }
@@ -49,7 +49,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     /**
      * @return bool
      */
-    public function hasAutoActivation()
+    public function hasAutoActivation(): bool
     {
         return false;
     }
@@ -57,7 +57,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     /**
      * @return bool
      */
-    public function hasFlexibleSchedule()
+    public function hasFlexibleSchedule(): bool
     {
         return true;
     }
@@ -65,7 +65,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     /**
      * @return int
      */
-    public function getDefaultScheduleType()
+    public function getDefaultScheduleType(): int
     {
         return self::SCHEDULE_TYPE_DAILY;
     }
@@ -73,7 +73,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     /**
      * @return array|inttitle
      */
-    public function getDefaultScheduleValue()
+    public function getDefaultScheduleValue(): int
     {
         return 1;
     }
@@ -83,7 +83,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
      *
      * @return string
      */
-    public function getTitle()
+    public function getTitle(): string
     {
         return $this->cp->txt("title");
     }
@@ -93,7 +93,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
      *
      * @return string
      */
-    public function getDescription()
+    public function getDescription(): string
     {
         return $this->cp->txt("description");
     }
@@ -102,17 +102,17 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
      * Defines whether or not a cron job can be started manually
      * @return bool
      */
-    public function isManuallyExecutable()
+    public function isManuallyExecutable(): bool
     {
         return true;
     }
     
-    public function hasCustomSettings()
+    public function hasCustomSettings(): bool
     {
         return true;
     }
     
-    public function run()
+    public function run(): ilCronJobResult
     {
         include_once "Services/Cron/classes/class.ilCronJobResult.php";
         
@@ -141,7 +141,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
         }
     }
     
-    public function addCustomSettingsToForm(ilPropertyFormGUI $a_form)
+    public function addCustomSettingsToForm(ilPropertyFormGUI $a_form): void
     {
         include_once 'Services/Form/classes/class.ilTextInputGUI.php';
         $users = new ilTextInputGUI(
@@ -157,7 +157,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
         $a_form->addItem($users);
     }
     
-    public function saveCustomSettings(ilPropertyFormGUI $a_form)
+    public function saveCustomSettings(ilPropertyFormGUI $a_form): bool
     {
         $setting = new ilSetting("crnot");
         if ($_POST['users_to_notify'] != null) {
