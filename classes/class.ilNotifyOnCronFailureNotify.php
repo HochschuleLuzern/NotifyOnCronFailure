@@ -38,7 +38,7 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
 
     public function __construct()
     {
-        $this->cp = new ilNotifyOnCronFailurePlugin();
+        $this->cp = ilNotifyOnCronFailurePlugin::getInstance();
     }
     
     public function getId(): string

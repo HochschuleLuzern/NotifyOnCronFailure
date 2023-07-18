@@ -43,7 +43,8 @@ class ilNotifyOnCronFailurePlugin extends ilCronHookPlugin
     public static function getInstance()
     {
         if (!isset(self::$instance)) {
-            self::$instance = new self();
+            global $DIC;
+            self::$instance = $DIC["component.factory"]->getPlugin("crnot");
         }
         
         return self::$instance;
