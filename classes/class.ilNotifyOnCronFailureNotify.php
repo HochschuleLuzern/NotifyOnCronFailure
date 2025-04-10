@@ -23,6 +23,7 @@ require_once './Services/Cron/classes/class.ilCronJob.php';
 require_once './Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure/classes/class.ilNotifyOnCronFailurePlugin.php';
 require_once './Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure/classes/class.ilNotifyOnCronFailureResult.php';
 require_once './Services/Administration/classes/class.ilSetting.php';
+use ILIAS\Cron\Schedule\CronJobScheduleType;
 
 /**
  * Class ilNotifyOnCronFailureNotify
@@ -65,9 +66,9 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     /**
      * @return int
      */
-    public function getDefaultScheduleType(): int
+    public function getDefaultScheduleType(): CronJobScheduleType
     {
-        return self::SCHEDULE_TYPE_DAILY;
+        return  CronJobScheduleType::SCHEDULE_TYPE_DAILY;
     }
     
     /**
