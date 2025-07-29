@@ -115,10 +115,12 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     
     public function run(): ilCronJobResult
     {
+        global $DIC;
         include_once "Services/Cron/classes/class.ilCronJobResult.php";
         
         try {
-            $data = ilCronManager::getCronJobData();
+            $repo = $DIC->cron()->repository();
+            $data = $repo->getCronJobData($this->getId());
             $data_plugins = ilCronManager::getPluginJobs();
             
             foreach ($data_plugins as $data_plugin) {
