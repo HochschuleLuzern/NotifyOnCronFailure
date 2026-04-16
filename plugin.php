@@ -23,10 +23,6 @@
     $id = 'crnot';
     
     // Version Information of Plugin & compatible versions of ILIAS
-    $version = '3';
-    $ilias_min_version = '8.0';
-    $ilias_max_version = '9.999';
-    
-    // Please contact this person if you have questions
-    $responsible = 'Mark Salter';
-    $responsible_mail = 'mark.salter@hslu.ch';
+    $version = '3.1';
+    $ilias_min_version = '10.0';
+    $ilias_max_version = '10.999';

@@ -3,19 +3,16 @@
 NotifyOnCronFailure is a Cron-Plugin that checks for failed or crashed jobs and notifies a selected set of people
 
 **Minimum ILIAS Version:**
-8.0
+10.0
 
 **Maximum ILIAS Version:**
-9.999
-
-**Responsible Developer:**
-Stephan Winiker - stephan.winiker@hslu.ch
+10.999
 
 **Supported Languages:**
 German, English
 
 ### Quick Installation Guide
-1. Copy the content of this folder in <ILIAS_directory>/Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure oder clon this Github-Repo to <ILIAS_directory>/Customizing/global/plugins/Services/Cron/CronHook/
+1. Copy the content of this folder in <ILIAS_directory>/public/Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure or clone this Github-Repo to <ILIAS_directory>/public/Customizing/global/plugins/Services/Cron/CronHook/
 
 2. Access ILIAS, go to the administration menu and select "Plugins" in the menu on the right.
 
