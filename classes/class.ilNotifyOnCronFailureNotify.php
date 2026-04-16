@@ -19,10 +19,6 @@
  * see <http://www.gnu.org/licenses/>.
  */
 
-require_once './Services/Cron/classes/class.ilCronJob.php';
-require_once './Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure/classes/class.ilNotifyOnCronFailurePlugin.php';
-require_once './Customizing/global/plugins/Services/Cron/CronHook/NotifyOnCronFailure/classes/class.ilNotifyOnCronFailureResult.php';
-require_once './Services/Administration/classes/class.ilSetting.php';
 use ILIAS\Cron\Schedule\CronJobScheduleType;
 
 /**
@@ -116,7 +112,6 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     public function run(): ilCronJobResult
     {
         global $DIC;
-        include_once "Services/Cron/classes/class.ilCronJobResult.php";
         
         try {
             $repo = $DIC->cron()->repository();
@@ -146,7 +141,6 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
     
     public function addCustomSettingsToForm(ilPropertyFormGUI $a_form): void
     {
-        include_once 'Services/Form/classes/class.ilTextInputGUI.php';
         $users = new ilTextInputGUI(
             $this->cp->txt('users_to_notify'),
             'users_to_notify'
@@ -176,13 +170,11 @@ class ilNotifyOnCronFailureNotify extends ilCronJob
         $users = explode(",", $setting->get('cron_notify_users_to_notify', ""));
         $user_ids = [];
     
-        include_once "./Services/User/classes/class.ilObjUser.php";
         foreach ($users as $user) {
             $user_ids[] = ilObjUser::getUserIdByLogin(trim($user));
         }
             
         if ($setting) {
-            include_once "./Services/Notification/classes/class.ilSystemNotification.php";
             $ntf = new ilSystemNotification();
             $ntf->setLangModules(array($this->cp->getPrefix()));
             $ntf->setSubjectLangId($this->cp->getPrefix() . "_" . "notification_subject");
